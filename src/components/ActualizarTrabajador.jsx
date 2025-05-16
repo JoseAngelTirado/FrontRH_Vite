@@ -7,8 +7,6 @@ const ActualizarTrabajador = () => {
     const navigate = useNavigate();
     const { id_trabajador } = useParams();
 
-    console.log(id_trabajador)
-
     const [formDataTrabajador, setFormDataTrabajador] = useState({
         nombre: "",
         apellidoPaterno: "",
@@ -43,14 +41,8 @@ const ActualizarTrabajador = () => {
         if (id_trabajador) {
             TrabajadorService.updateTrabajador(id_trabajador, trabajador).then((response) => {
                 console.log(response.data);
-                navigate('/trabajador/actualizar-trabajador:/id_usuario')
-            }).catch(error => {
-                console.log(error);
-            })
-        } else {
-            TrabajadorService.createTrabajador(trabajador).then((response) => {
-                console.log(response.data);
-                navigate('/trabajador/actualizar-trabajador:/id_usuario')
+                navigate('/trabajador/' + id_trabajador)
+                alert("Actualización de datos con exito")
             }).catch(error => {
                 console.log(error);
             })
@@ -76,7 +68,7 @@ const ActualizarTrabajador = () => {
 
     return (
         <div className="trabajador">
-            <h2>Registro de trabajadores</h2>
+            <h2>Actualizando Información del Trabajador {id_trabajador}</h2>
             <div>
                 <form className="trabajador-formulario">
                     <div>
@@ -99,6 +91,23 @@ const ActualizarTrabajador = () => {
                         <label>Telefono</label>
                         <input type="text" placeholder="Digita Telefono" name="telefono" value={formDataTrabajador.telefono} onChange={handleChange} />
                     </div>
+                    <div>
+                            <label>Acta de Nacimiento</label>
+                            <input type="file" name="acta" accept=".pdf,application/pdf" />
+                        </div>
+                        <div>
+                            <label>RFC</label>
+                            <input type="file" name="rfc" accept=".pdf,application/pdf"  />
+                        </div>
+                        <div>
+                            <label>NSS</label>
+                            <input type="file" name="nss" accept=".pdf,application/pdf"  />
+                        </div>
+                        <div>
+                            <label>CURP</label>
+                            <input type="file" name="curp" accept=".pdf,application/pdf" />
+                        </div>
+
                     <button className="" onClick={(e) => handleSubmit(e)}>Guardar</button>
                 </form>
             </div>
