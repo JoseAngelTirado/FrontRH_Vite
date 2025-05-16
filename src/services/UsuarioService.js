@@ -13,16 +13,16 @@ class UsuarioService{
         return axios.post(USUARIO_API, usuario);
     }
 
-    getUsuarioById(usuarioId){
-        return axios.get(USUARIO_API + '/' + usuarioId)
+    getUsuarioById(id_usuario){
+        return axios.get(USUARIO_API + '/' + id_usuario)
     }
 
-    updateUsuario(usuarioId, usuario){
-        return axios.put(USUARIO_API + '/' + usuarioId, usuario)
+    updateUsuario(id_usuario, usuario){
+        return axios.put(USUARIO_API + '/' + id_usuario, usuario)
     }
         
-    deleteCliente(usuarioId){
-        return axios.delete(USUARIO_API + '/' + usuarioId);
+    deleteUsuario(id_usuario){
+        return axios.delete(USUARIO_API + '/' + id_usuario);
     }
     
 }

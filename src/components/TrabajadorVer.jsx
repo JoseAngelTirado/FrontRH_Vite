@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import TrabajadorService from "../services/TrabajadorService";
 import '../assets/TrabajadorFormulario.css'
 
-const VerTrabajador = () => {
+const TrabajadorVer = () => {
 
     const navigate = useNavigate();
     const { id_trabajador } = useParams();
@@ -92,4 +92,4 @@ const VerTrabajador = () => {
 
 }
 
-export default VerTrabajador;
+export default TrabajadorVer;

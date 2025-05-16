@@ -3,11 +3,11 @@ import UsuarioService from "../services/UsuarioService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import '../assets/UsuarioFormulario.css'
 
-const AgregarUsuarioAdmin = () => {
+const AdminAgregarUsuario = () => {
     const navigate = useNavigate();
     const { id_usuario } = useParams();
 
-    const [formDataUsuario, setFormDataUsuario] = useState({
+    const [usuario, setUsuario] = useState({
         nombre: "",
         email: "",
         password:"",
@@ -16,38 +16,39 @@ const AgregarUsuarioAdmin = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormDataUsuario({ ...formDataUsuario, [name]: value });
+        setUsuario({ ...usuario, [name]: value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        for (const campo in formDataUsuario) {   //Hacemos validacion que los campos no esten vacios
-            if (!formDataUsuario[campo].trim()) {
+        for (const campo in usuario) {   //Hacemos validacion que los campos no esten vacios
+            if (!usuario[campo].trim()) {
                 alert(`El campo  ${campo} es obligatorio.`);
                 return;
             }
         }
 
         const usuario = {
-            nombre: formDataUsuario.nombre,
-            email: formDataUsuario.email,
-            password:formDataUsuario.password,
-            rol: formDataUsuario.rol
+            nombre: usuario.nombre,
+            email: usuario.email,
+            password:usuario.password,
+            rol: usuario.rol
         };
 
 
         if (id_usuario) {
             UsuarioService.updateUsuario(id_usuario, usuario).then((response) => {
                 console.log(response.data);
-                navigate('/admin')
+                alert("Usuario Actualizado")
+                navigate('/admin/dashboard')
             }).catch(error => {
                 console.log(error);
             })
         } else {
             UsuarioService.createUsuario(usuario).then((response) => {
                 console.log(response.data);
-                navigate('/admin')
+                navigate('/admin/dashboard')
             }).catch(error => {
                 console.log("Error aqui:", error);
             })
@@ -57,9 +58,10 @@ const AgregarUsuarioAdmin = () => {
     useEffect(() => {
         if (id_usuario) {
             UsuarioService.getUsuarioById(id_usuario).then((response) => {
-                setFormDataUsuario({
+                setUsuario({
                     nombre: response.data.nombre,
                     email: response.data.email,
+                    password:response.data.password,
                     rol: response.data.rol,
                 })
             }).catch(error => {
@@ -68,6 +70,10 @@ const AgregarUsuarioAdmin = () => {
             })
         }
     }, [])
+
+    const password = () =>{
+        
+    }
 
     const titulo = () => {
         if (id_usuario) {
@@ -85,22 +91,22 @@ const AgregarUsuarioAdmin = () => {
             <form className="usuario-formulario">
                 <div>
                     <label>Nombre completo:</label>
-                    <input type="text" name="nombre" value={formDataUsuario.nombre} onChange={handleChange} required />
+                    <input type="text" name="nombre" value={usuario.nombre} onChange={handleChange} required />
                 </div>
 
                 <div>
                     <label>Correo electrónico:</label>
-                    <input type="email" name="email" value={formDataUsuario.email} onChange={handleChange} required />
+                    <input type="email" name="email" value={usuario.email} onChange={handleChange} required />
                 </div>
 
                 <div>
                     <label>Contraseña:</label>
-                    <input type="password" name="password" value={formDataUsuario.password} onChange={handleChange} required />
+                    <input type="password" name="password" value={usuario.password} onChange={handleChange} required />
                 </div>
 
                 <div>
                     <label>Rol:</label>
-                    <select name="rol" value={formDataUsuario.rol} onChange={handleChange}>
+                    <select name="rol" value={usuario.rol} onChange={handleChange}>
                         <option value="trabajador">Trabajador</option>
                         <option value="rh">Recursos Humanos</option>
                         <option value="dirctivo">Director</option>
@@ -115,4 +121,4 @@ const AgregarUsuarioAdmin = () => {
 
 };
 
-export default AgregarUsuarioAdmin;
+export default AdminAgregarUsuario;

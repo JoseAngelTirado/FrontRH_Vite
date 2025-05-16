@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import UsuarioService from '../services/UsuarioService';
+import TrabajadorService from '../services/TrabajadorService';
 
-const ListarUsuariosAdmin = () => {
+const AdminListarUsuarios = () => {
     const [usuarios, setUsuarios] = useState([]);
 
     useEffect(() => {
@@ -18,17 +19,19 @@ const ListarUsuariosAdmin = () => {
         })
     }
 
-    const borrarUsuario = (id_usuario) =>{
-        UsuarioService.deleteCliente(id_usuario).then((response)=>{
-            listarUsuarios();
-        }).catch(error=>{
-            console.log(error)
-        })
-    }
+    // const borrarUsuario = (id_usuario) =>{
+    //     TrabajadorService.deleteTrabajador(id_usuario)
+    //     UsuarioService.deleteUsuario(id_usuario).then((response)=>{
+
+    //         listarUsuarios();
+    //     }).catch(error=>{
+    //         console.log(error)
+    //     })
+    // }
     return (
         <div className=''>
             <h2>Lista de Usuarios</h2>
-            <Link to='/admin/agregar-usuario' className=''>Agregar Usuario</Link>
+            <Link to='/admin/agregar' className=''>Agregar Usuario</Link>
             <table className=''>
                 <thead>
                     <tr>
@@ -49,8 +52,8 @@ const ListarUsuariosAdmin = () => {
                                     <td>{usuarios.email}</td>
                                     <td>{usuarios.rol}</td>
                                     <td>
-                                        <Link className='' to={`/admin/actualizar-usuario/${usuarios.id_usuario}`}>Actualizar</Link>
-                                        <button onClick={()=>borrarUsuario(usuarios.id_usuario)}>Eliminar</button>
+                                        <Link className='' to={`/admin/actualizar/${usuarios.id_usuario}`}>Actualizar</Link>
+                                        {/* <button onClick={()=>borrarUsuario(usuarios.id_usuario)}>Eliminar</button> */}
                                     </td>
                                 </tr>
                         )
@@ -62,4 +65,4 @@ const ListarUsuariosAdmin = () => {
     )
 }
 
-export default ListarUsuariosAdmin;
+export default AdminListarUsuarios;

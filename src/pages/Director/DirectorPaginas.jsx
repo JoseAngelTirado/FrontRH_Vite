@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom"
-import ListarTrabajadoresDirector from "../../components/ListarTrabajadoresDirector"
+import DirectorListarTrabajadores from "../../components/DirectorListarTrabajadores"
 
 
 function DirectorPaginas () {
     return(
         <Routes>
-            <Route path="/dashboard" element={<ListarTrabajadoresDirector />} />
+            <Route path="/dashboard" element={<DirectorListarTrabajadores />} />
         </Routes>
     );
 }

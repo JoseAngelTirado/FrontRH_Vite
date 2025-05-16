@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom"
-import ActualizarTrabajador from "../../components/ActualizarTrabajador"
-import VerTrabajador from "../../components/VerTrabajador"
+import TrabajadorActualizar from "../../components/TrabajadorActualizar"
+import TrabajadorVer from "../../components/TrabajadorVer"
 
 
 function TrabajadorPaginas () {
     return(
         <Routes>
-            <Route path="/:id_trabajador" element={<VerTrabajador />} />
-            <Route path="/actualizar/:id_trabajador" element={<ActualizarTrabajador />} />
+            <Route path="/:id_trabajador" element={<TrabajadorVer />} />
+            <Route path="/actualizar/:id_trabajador" element={<TrabajadorActualizar />} />
         </Routes>
     );
 }

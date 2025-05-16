@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import TrabajadorService from "../services/TrabajadorService";
 import '../assets/TrabajadorFormulario.css'
 
-const ActualizarTrabajador = () => {
+const TrabajadorActualizar = () => {
     const navigate = useNavigate();
     const { id_trabajador } = useParams();
 
@@ -92,27 +92,30 @@ const ActualizarTrabajador = () => {
                         <input type="text" placeholder="Digita Telefono" name="telefono" value={formDataTrabajador.telefono} onChange={handleChange} />
                     </div>
                     <div>
-                            <label>Acta de Nacimiento</label>
-                            <input type="file" name="acta" accept=".pdf,application/pdf" />
-                        </div>
-                        <div>
-                            <label>RFC</label>
-                            <input type="file" name="rfc" accept=".pdf,application/pdf"  />
-                        </div>
-                        <div>
-                            <label>NSS</label>
-                            <input type="file" name="nss" accept=".pdf,application/pdf"  />
-                        </div>
-                        <div>
-                            <label>CURP</label>
-                            <input type="file" name="curp" accept=".pdf,application/pdf" />
-                        </div>
+                        <label>Acta de Nacimiento</label>
+                        <input type="file" name="acta" accept=".pdf,application/pdf" />
+                    </div>
+                    <div>
+                        <label>RFC</label>
+                        <input type="file" name="rfc" accept=".pdf,application/pdf" />
+                    </div>
+                    <div>
+                        <label>NSS</label>
+                        <input type="file" name="nss" accept=".pdf,application/pdf" />
+                    </div>
+                    <div>
+                        <label>CURP</label>
+                        <input type="file" name="curp" accept=".pdf,application/pdf" />
+                    </div>
 
                     <button className="" onClick={(e) => handleSubmit(e)}>Guardar</button>
+                    <Link to={`/trabajador/${id_trabajador}`} className="">Cancelar</Link>
+
+
                 </form>
             </div>
         </div>
 
     )
 }
-export default ActualizarTrabajador;
+export default TrabajadorActualizar;

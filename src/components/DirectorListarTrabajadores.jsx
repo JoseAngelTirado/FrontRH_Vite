@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
-
 import TrabajadorService from '../services/TrabajadorService';
 
-const ListarTrabajadoresRH = () => {
+const DirectorListarTrabajadores = () => {
     const [trabajadores, setTrabajadores] = useState([]);
 
     useEffect(() => {
@@ -19,17 +17,9 @@ const ListarTrabajadoresRH = () => {
         })
     }
 
-    const borrarTrabajador = (id_trabajador ) => {
-        TrabajadorService.deleteTrabajador(id_trabajador).then((response) => {
-            listarTrabajadores();
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-
     return (
         <div className=''>
-            <h2>Lista de Trabajadores</h2>
+            <h2>Lista de Trabajadores </h2>
             <table className=''>
                 <thead>
                     <tr>
@@ -38,7 +28,6 @@ const ListarTrabajadoresRH = () => {
                         <th>Apellido Materno</th>
                         <th>Direccion</th>
                         <th>Telefono</th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,8 +41,6 @@ const ListarTrabajadoresRH = () => {
                                     <td>{trabajadores.direccion}</td>
                                     <td>{trabajadores.telefono}</td>
                                     <td>
-                                        <Link className='' to={`/rh/actualizar-trabajador/${trabajadores.id_trabajador}`}>Actualizar</Link>
-                                        <button onClick={() => borrarTrabajador(trabajadores.id_trabajador)}>Eliminar</button>
                                     </td>
                                 </tr>
                         )
@@ -65,4 +52,4 @@ const ListarTrabajadoresRH = () => {
     )
 }
 
-export default ListarTrabajadoresRH;
+export default DirectorListarTrabajadores;

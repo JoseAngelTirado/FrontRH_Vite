@@ -3,7 +3,7 @@ import axios from "axios";
 const EXPEDIENTE_API = "http://localhost:8080/expedientes"
 
 class ExpedienteService {
-    getAllExpedientees() {
+    getAllExpedientes() {
         return axios.get(EXPEDIENTE_API);
     }
 

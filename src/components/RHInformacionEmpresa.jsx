@@ -1,4 +1,4 @@
-const InformacionEmpresa= () =>{
+const RHInformacionEmpresa= () =>{
 
 
 
@@ -12,4 +12,4 @@ const InformacionEmpresa= () =>{
 
 
 
-export default InformacionEmpresa;
+export default RHInformacionEmpresa;

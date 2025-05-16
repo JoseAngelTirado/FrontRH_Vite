@@ -1,32 +1,17 @@
 import { Routes, Route } from "react-router-dom"
-import AgregarUsuarioAdmin from "../../components/AgregarUsuarioAdmin"
-import ListarUsuariosAdmin from "../../components/ListarUsuariosAdmin"
-import Header from "../../components/Header";
-
+import AdminAgregarUsuario from "../../components/AdminAgregarUsuario"
+import AdminListarUsuarios from "../../components/AdminListarUsuarios"
 
 function AdminPagina() {
     return (
         <Routes>
-            <Route path="/actualizar-usuario/:id_usuario" element={
-                <>
-                    <Header />
-                    <AgregarUsuarioAdmin />
-                </>
-            } />
-            <Route path="/agregar-usuario" element={
-                <>
-                    <Header />
-                    <AgregarUsuarioAdmin />
-                </>
-            } />
-            <Route path="/dashboard" element={
-                <>
-                    <Header />
-                    <ListarUsuariosAdmin />
-                </>
-            } />
+            <Route path="/actualizar/:id_usuario" element={<AdminAgregarUsuario />} />
+            <Route path="/agregar" element={<AdminAgregarUsuario />} />
+            <Route path="/dashboard" element={<AdminListarUsuarios />} />
         </Routes>
     );
 }
+
+
 
 export default AdminPagina;
