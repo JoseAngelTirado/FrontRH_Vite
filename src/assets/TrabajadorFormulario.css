@@ -1,0 +1,12 @@
+.trabajador{
+    background: #222;
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+}
+
+.trabajador-formulario{
+    display: flex;
+    flex-direction: column;
+    
+}

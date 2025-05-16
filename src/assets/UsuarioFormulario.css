@@ -1,0 +1,11 @@
+.usuario {
+    background: #222;
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+}
+
+.usuario-formulario {
+    display: flex;
+    flex-direction: column;
+}
