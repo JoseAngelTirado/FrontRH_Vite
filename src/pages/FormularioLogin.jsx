@@ -15,6 +15,7 @@ const FormularioLogin = () => {
   });
 
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormDataCredenciales({ ...formDataCredenciales, [name]: value });
@@ -43,7 +44,8 @@ const FormularioLogin = () => {
 
     // Consulta y validación de credenciales
     try {
-      const response = await UsuarioService.getUsuarioByEmail(formDataCredenciales.email);
+      // const response = await UsuarioService.getUsuarioByEmail(formDataCredenciales.email);
+      const response = await UsuarioService.getUsuarioById(formDataCredenciales.id_usuario);
 
 
       const usuario = response.data;
@@ -54,17 +56,17 @@ const FormularioLogin = () => {
 
         // Redireccionar según el rol
         switch (usuario.rol) {
-          case 'ADMIN':
-            navigate('/admin');
+          case 'admin':
+            navigate('/admin/dashboard');
             break;
-          case 'DIRECTOR':
-            navigate('/director');
+          case 'director':
+            navigate('/director/dashboard');
             break;
-          case 'RH':
-            navigate('/rh');
+          case 'rh':
+            navigate('/rh/dashboard');
             break;
-          case 'TRABAJADOR':
-            navigate('/trabajador');
+          case 'trabajador':
+            navigate('/trabajador/' + usuario.id_usuario);
             break;
           default:
             alert('Rol desconocido');
@@ -95,9 +97,8 @@ const FormularioLogin = () => {
                 name="id_usuario"
                 value={formDataCredenciales.id_usuario}
                 onChange={handleChange}
-                className={`w-full px-4 py-2 pl-10 border ${
-                  errors.id_usuario ? 'border-red-500' : 'border-gray-300'
-                } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500`}
+                className={`w-full px-4 py-2 pl-10 border ${errors.id_usuario ? 'border-red-500' : 'border-gray-300'
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500`}
                 placeholder="usuario123"
               />
             </div>
@@ -115,9 +116,8 @@ const FormularioLogin = () => {
                 name="password"
                 value={formDataCredenciales.password}
                 onChange={handleChange}
-                className={`w-full px-4 py-2 pl-10 border ${
-                  errors.password ? 'border-red-500' : 'border-gray-300'
-                } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500`}
+                className={`w-full px-4 py-2 pl-10 border ${errors.password ? 'border-red-500' : 'border-gray-300'
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500`}
                 placeholder="••••••••"
               />
             </div>
