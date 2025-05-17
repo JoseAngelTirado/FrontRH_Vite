@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react'
 import TrabajadorService from '../services/TrabajadorService';
+import { Link } from 'react-router-dom';
+import ExpedienteService from '../services/ExpedienteService';
 
-const DirectorListarTrabajadores = () => {
-    const [trabajadores, setTrabajadores] = useState([]);
+const DirectorListarExpedientes = () => {
+    const [expedientes, setExpedientes] = useState([]);
 
     useEffect(() => {
-        listarTrabajadores();
+        listarExpedientes();
     }, [])
 
-    const listarTrabajadores = () => {
-        TrabajadorService.getAllTrabajadores().then(response => {
-            setTrabajadores(response.data);
-            console.log(response.data);
+    const listarExpedientes = () => {
+        ExpedienteService.getAllExpedientes().then(response => {
+            setExpedientes(response.data);
         }).catch(error => {
             console.log(error);
         })
@@ -19,37 +20,40 @@ const DirectorListarTrabajadores = () => {
 
     return (
         <div className=''>
-            <h2>Lista de Trabajadores </h2>
+            <h2>Lista de expedientes</h2>
+            <div>
+                <form>
+                    <div>
+                        <input type="text" name="buscador" placeholder="Buscar trabajador" />
+                        <button>Buscar</button>
+                    </div>
+                </form>
+            </div>
             <table className=''>
                 <thead>
                     <tr>
-                        <th>Nombre(s)</th>
-                        <th>Apellido Paterno</th>
-                        <th>Apellido Materno</th>
-                        <th>Direccion</th>
-                        <th>Telefono</th>
+                        <th>No de expediente</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        trabajadores.map(
-                            trabajadores =>
-                                <tr key={trabajadores.id_trabajador}>
-                                    <td>{trabajadores.nombre}</td>
-                                    <td>{trabajadores.apellidoPaterno}</td>
-                                    <td>{trabajadores.apellidoMaterno}</td>
-                                    <td>{trabajadores.direccion}</td>
-                                    <td>{trabajadores.telefono}</td>
+                        expedientes.map(
+                            expedientes =>
+                                <tr key={expedientes.id_expediente}>
+                                    <td>{expedientes.nombre}</td>
                                     <td>
+                                        <Link className='' to={`/expedientes/${expedientes.id_expediente}`}>Ver Expediente</Link>
                                     </td>
                                 </tr>
                         )
                     }
                 </tbody>
             </table>
-
+            <Link to='/director/dashboard' className="">Regresar</Link>
         </div>
     )
 }
 
-export default DirectorListarTrabajadores;
+export default DirectorListarExpedientes;
