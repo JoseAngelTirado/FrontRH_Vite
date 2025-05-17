@@ -75,7 +75,7 @@ const RHActualizarExpedientes= () => {
 
     return (
         <div className="expediente">
-            <h2>Registro de expedientees</h2>
+            <h2>Registro de expedientes</h2>
             <div>
                 <form className="expediente-formulario">
                     <div>
