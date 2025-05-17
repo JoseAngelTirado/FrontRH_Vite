@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, Lock } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import UsuarioService from '../services/UsuarioService';
 
 const FormularioLogin = () => {
@@ -13,6 +14,7 @@ const FormularioLogin = () => {
     password: '',
   });
 
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormDataCredenciales({ ...formDataCredenciales, [name]: value });
@@ -41,11 +43,33 @@ const FormularioLogin = () => {
 
     // Consulta y validación de credenciales
     try {
-      const response = await UsuarioService.getUsuarioById(formDataCredenciales.id_usuario);
+      const response = await UsuarioService.getUsuarioByEmail(formDataCredenciales.email);
+
+
       const usuario = response.data;
 
       if (usuario.password === formDataCredenciales.password) {
-        alert(`Bienvenido, ${usuario.id_usuario}`);
+        // Guardar en localStorage para sesiones simples
+        localStorage.setItem("id_usuario", usuario.id_usuario);
+
+        // Redireccionar según el rol
+        switch (usuario.rol) {
+          case 'ADMIN':
+            navigate('/admin');
+            break;
+          case 'DIRECTOR':
+            navigate('/director');
+            break;
+          case 'RH':
+            navigate('/rh');
+            break;
+          case 'TRABAJADOR':
+            navigate('/trabajador');
+            break;
+          default:
+            alert('Rol desconocido');
+            break;
+        }
       } else {
         alert('Contraseña incorrecta');
       }
