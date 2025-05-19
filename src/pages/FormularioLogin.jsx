@@ -66,7 +66,7 @@ const FormularioLogin = () => {
             navigate('/rh/dashboard');
             break;
           case 'trabajador':
-            navigate('/trabajador/' + usuario.id_usuario);
+            navigate('/trabajador/dashboard/' + usuario.id_usuario);
             break;
           default:
             alert('Rol desconocido');
@@ -99,7 +99,7 @@ const FormularioLogin = () => {
                 onChange={handleChange}
                 className={`w-full px-4 py-2 pl-10 border ${errors.id_usuario ? 'border-red-500' : 'border-gray-300'
                   } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500`}
-                placeholder="usuario123"
+                placeholder="ID de Usuario"
               />
             </div>
             {errors.id_usuario && <p className="text-red-500 text-sm mt-1">{errors.id_usuario}</p>}
