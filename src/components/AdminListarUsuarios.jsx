@@ -42,11 +42,19 @@ const AdminListarUsuarios = () => {
           </thead>
           <tbody>
             {usuarios.map(usuario => (
+<<<<<<< Updated upstream
               <tr key={usuario.id_usuario} className="border-b hover:bg-gray-100">
                 <td className="px-6 py-4 text-gray-800">{usuario.id_usuario}</td>
                 <td className="px-6 py-4 text-gray-800">{usuario.nombre}</td>
                 <td className="px-6 py-4 text-gray-800">{usuario.email}</td>
                 <td className="px-6 py-4 text-gray-800 capitalize">{usuario.rol}</td>
+=======
+              <tr key={usuario.id_usuario} className="border-b hover:bg-gray-100 text-black">
+                <td className="px-6 py-4">{usuario.id_usuario}</td>
+                <td className="px-6 py-4">{usuario.nombre}</td>
+                <td className="px-6 py-4">{usuario.email}</td>
+                <td className="px-6 py-4 capitalize">{usuario.rol}</td>
+>>>>>>> Stashed changes
                 <td className="px-6 py-4 space-x-2">
                   <Link 
                     className="text-blue-600 hover:underline"
