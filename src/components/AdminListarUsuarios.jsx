@@ -1,68 +1,68 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import UsuarioService from '../services/UsuarioService';
-import TrabajadorService from '../services/TrabajadorService';
 
 const AdminListarUsuarios = () => {
-    const [usuarios, setUsuarios] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
 
-    useEffect(() => {
-        listarUsuarios();
-    }, [])
+  useEffect(() => {
+    listarUsuarios();
+  }, [])
 
-    const listarUsuarios =()=>{
-        UsuarioService.getAllUsuarios().then(response => {
-            setUsuarios(response.data);
-            console.log(response.data);
-        }).catch(error => {
-            console.log(error);
-        })
-    }
+  const listarUsuarios = () => {
+    UsuarioService.getAllUsuarios().then(response => {
+      setUsuarios(response.data);
+      console.log(response.data);
+    }).catch(error => {
+      console.log(error);
+    })
+  }
 
-    // const borrarUsuario = (id_usuario) =>{
-    //     TrabajadorService.deleteTrabajador(id_usuario)
-    //     UsuarioService.deleteUsuario(id_usuario).then((response)=>{
+  return (
+    <div className="p-8">
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">Lista de Usuarios</h2>
 
-    //         listarUsuarios();
-    //     }).catch(error=>{
-    //         console.log(error)
-    //     })
-    // }
-    return (
-        <div className=''>
-            <h2>Lista de Usuarios</h2>
-            <Link to='/admin/agregar' className=''>Agregar Usuario</Link>
-            <table className=''>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>rol</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        usuarios.map(
-                            usuarios =>
-                                <tr key={usuarios.id_usuario}>
-                                    <td>{usuarios.id_usuario}</td>
-                                    <td>{usuarios.nombre}</td>
-                                    <td>{usuarios.email}</td>
-                                    <td>{usuarios.rol}</td>
-                                    <td>
-                                        <Link className='' to={`/admin/actualizar/${usuarios.id_usuario}`}>Actualizar</Link>
-                                        {/* <button onClick={()=>borrarUsuario(usuarios.id_usuario)}>Eliminar</button> */}
-                                    </td>
-                                </tr>
-                        )
-                    }
-                </tbody>
-            </table>
+      <Link 
+        to='/admin/agregar'
+        className="inline-block mb-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-200"
+      >
+        ➕ Agregar Usuario
+      </Link>
 
-        </div>
-    )
+      <div className="overflow-x-auto rounded-xl shadow-lg">
+        <table className="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr className="bg-purple-600 text-white">
+              <th className="px-6 py-3 text-left">ID</th>
+              <th className="px-6 py-3 text-left">Nombre</th>
+              <th className="px-6 py-3 text-left">Correo</th>
+              <th className="px-6 py-3 text-left">Rol</th>
+              <th className="px-6 py-3 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {usuarios.map(usuario => (
+              <tr key={usuario.id_usuario} className="border-b hover:bg-gray-100">
+                <td className="px-6 py-4">{usuario.id_usuario}</td>
+                <td className="px-6 py-4">{usuario.nombre}</td>
+                <td className="px-6 py-4">{usuario.email}</td>
+                <td className="px-6 py-4 capitalize">{usuario.rol}</td>
+                <td className="px-6 py-4 space-x-2">
+                  <Link 
+                    className="text-blue-600 hover:underline"
+                    to={`/admin/actualizar/${usuario.id_usuario}`}
+                  >
+                    ✏️ Actualizar
+                  </Link>
+                  {/* <button onClick={() => borrarUsuario(usuario.id_usuario)} className="text-red-600 hover:underline">🗑️ Eliminar</button> */}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
 }
 
 export default AdminListarUsuarios;
