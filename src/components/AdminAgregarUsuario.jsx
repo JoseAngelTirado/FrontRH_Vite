@@ -88,7 +88,7 @@ const AdminAgregarUsuario = () => {
               onChange={handleChange}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-              placeholder="Juan Pérez"
+              placeholder="Digita tu nombre"
             />
           </div>
 
@@ -134,7 +134,8 @@ const AdminAgregarUsuario = () => {
             >
               <option value="trabajador">Trabajador</option>
               <option value="rh">Recursos Humanos</option>
-              <option value="dirctivo">Director</option>
+              <option value="directivo">Director</option>
+              <option value="admin">Administrador</option>
             </select>
           </div>
 
