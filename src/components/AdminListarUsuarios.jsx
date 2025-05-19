@@ -22,12 +22,12 @@ const AdminListarUsuarios = () => {
     <div className="p-8">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Lista de Usuarios</h2>
 
-      <Link 
+      {/* <Link 
         to='/admin/agregar'
         className="inline-block mb-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-200"
       >
         ➕ Agregar Usuario
-      </Link>
+      </Link> */}
 
       <div className="overflow-x-auto rounded-xl shadow-lg">
         <table className="min-w-full bg-white border border-gray-300">
@@ -48,7 +48,7 @@ const AdminListarUsuarios = () => {
                 <td className="px-6 py-4 text-gray-800">{usuario.email}</td>
                 <td className="px-6 py-4 text-gray-800 capitalize">{usuario.rol}</td>
                 <td className="px-6 py-4 space-x-2">
-                  <Link 
+                  <Link
                     className="text-blue-600 hover:underline"
                     to={`/admin/actualizar/${usuario.id_usuario}`}
                   >
@@ -60,6 +60,15 @@ const AdminListarUsuarios = () => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div className="flex justify-end mb-4">
+        <Link
+          to="/admin/dashboard"
+          className="bg-purple-600 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-700 transition-colors"
+        >
+          Regresar
+        </Link>
       </div>
     </div>
   )

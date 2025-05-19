@@ -5,14 +5,25 @@ const DirectorDashboard = () => {
 
 
     return (
-        <div>
-
-            {/* <Link className='' to={`/expedientes/${expedientes.id_expediente}`}>Ver Expediente</Link> */}
-            <ol>
-                <li><Link to='/director/expedientes' className="">Empresa 1</Link></li>
-                <li><Link to='/director/expedientes' className="">Empresa 2</Link></li>
-                <li><Link to='/director/expedientes' className="">Empresa 3</Link></li>
-            </ol>
+        <div className="grid gap-4 p-4 bg-gray-100 rounded-xl shadow-md w-full max-w-md mx-auto">
+            <Link
+                to="/director/expedientes"
+                className="block bg-white p-4 rounded-lg shadow hover:bg-purple-100 transition-colors font-medium text-center text-gray-800"
+            >
+                Empresa 3
+            </Link>
+            <Link
+                to="/director/expedientes"
+                className="block bg-white p-4 rounded-lg shadow hover:bg-purple-100 transition-colors font-medium text-center text-gray-800"
+            >
+                Empresa 1
+            </Link>
+            <Link
+                to="/director/expedientes"
+                className="block bg-white p-4 rounded-lg shadow hover:bg-purple-100 transition-colors font-medium text-center text-gray-800"
+            >
+                Empresa 2
+            </Link>
         </div>
     )
 }
