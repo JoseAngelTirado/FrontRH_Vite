@@ -10,10 +10,6 @@ const ProtectedRoute= ({allowedRoles, redirectPath='/'}) =>{
         return <Navigate to={redirectPath} replace />;
     }   
 
-    if (!allowedRoles.includes(user.rol)) {
-    return <Navigate to="/no-autorizado" replace />;
-  }
-
     return <Outlet/>
 }
 export default ProtectedRoute;
