@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import UsuarioService from "../services/UsuarioService";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import TrabajadorService from "../services/TrabajadorService";
 
 const AdminAgregarUsuario = () => {
   const navigate = useNavigate();
@@ -43,15 +44,26 @@ const AdminAgregarUsuario = () => {
         id_empresa: usuario.id_empresa // Conversión a número
       }
     };
-    console.log("Nuevo suuari:")
-    console.log(nuevoUsuario)
 
     try {
       if (id_usuario) {
         await UsuarioService.updateUsuario(id_usuario, nuevoUsuario);
         alert("Usuario actualizado");
       } else {
-        await UsuarioService.createUsuario(nuevoUsuario);
+        const usuarioResponse = await UsuarioService.createUsuario(nuevoUsuario);
+        const id_usuario = usuarioResponse.data.id_usuario;
+
+        const mandar = {
+          nombre: nuevoUsuario.nombre,
+          usuario:{
+            id_usuario:id_usuario
+          }
+        }
+
+        console.log(mandar)
+
+        await TrabajadorService.createTrabajador(mandar)
+
         alert("Usuario agregado");
 
       }
@@ -59,7 +71,7 @@ const AdminAgregarUsuario = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  };  
 
   useEffect(() => {
     if (id_usuario) {

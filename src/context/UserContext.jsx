@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TrabajadorService from "../services/TrabajadorService";
 
 export const UserContext = createContext();
 
@@ -9,13 +10,30 @@ export const UserProvider = ({ children }) => {
     const navigate = useNavigate();
 
 
-    const login = (id, rol,nombre, id_empresa) => {
-        setUser({ id, rol,nombre, id_empresa });
+    const login = (id, rol, nombre, id_empresa) => {
+        setUser({ id, rol, nombre, id_empresa });
         if (rol == "trabajador") {
-            navigate("/" + rol + "/dashboard/"+ id);
+
+            TrabajadorService.getAllTrabajadores().then(response => {
+                const trabajadores = response.data;
+                console.log(trabajadores) 
+
+                const trabajadorEncontrado = trabajadores.find(t =>
+                    t?.usuario?.id_usuario === id
+                );
+
+                console.log(trabajadorEncontrado)
+                if (trabajadorEncontrado) {
+                    console.log("Trabajador encontrado. ID Trabajador:", trabajadorEncontrado.id_trabajador);
+
+                    navigate("/" + rol + "/dashboard/" + trabajadorEncontrado.id_trabajador);
+                }
+
+
+            })
         } else {
-            console.log(id, rol)
-            navigate("/" +rol + "/dashboard");
+
+            navigate("/" + rol + "/dashboard");
         }
 
     }

@@ -5,8 +5,6 @@ import { useUser } from "../context/UserContext";
 const Header = () => {
     const {user, logout} = useUser();
     const navigate = useNavigate();
-
-    console.log(user)
   return (
     <div className="flex items-center justify-between bg-purple-600 p-4 shadow-md rounded-b-2xl">
       <h2 className="text-2xl font-bold text-white">RH Soft</h2>

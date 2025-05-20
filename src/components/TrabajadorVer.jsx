@@ -20,38 +20,16 @@ const TrabajadorVer = () => {
     setFormDataTrabajador({ ...formDataTrabajador, [name]: value });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const trabajador = {
-  //     nombre: formDataTrabajador.nombre,
-  //     apellidoPaterno: formDataTrabajador.apellidoPaterno,
-  //     apellidoMaterno: formDataTrabajador.apellidoMaterno,
-  //     direccion: formDataTrabajador.direccion,
-  //     telefono: formDataTrabajador.telefono,
-  //   };
-
-  //   if (id_trabajador) {
-  //     TrabajadorService.updateTrabajador(id_trabajador, trabajador)
-  //       .then(() => {
-  //         navigate("/trabajador/actualizar/" + id_trabajador);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }
-  // };
-
   useEffect(() => {
     if (id_trabajador) {
       TrabajadorService.getTrabajadorById(id_trabajador)
         .then((response) => {
           setFormDataTrabajador({
-            nombre: response.data.nombre,
-            apellidoPaterno: response.data.apellidoPaterno,
-            apellidoMaterno: response.data.apellidoMaterno,
-            direccion: response.data.direccion,
-            telefono: response.data.telefono,
+            nombre: response.data.nombre || "",
+            apellidoPaterno: response.data.apellidoPaterno || "",
+            apellidoMaterno: response.data.apellidoMaterno || "",
+            direccion: response.data.direccion || "",
+            telefono: response.data.telefono || "",
           });
         })
         .catch((error) => {
@@ -81,7 +59,7 @@ const TrabajadorVer = () => {
             <input
               type="text"
               name="nombre"
-              value={formDataTrabajador.nombre}
+              value={formDataTrabajador.nombre || ""}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-purple-500 outline-none"
             />
@@ -92,7 +70,7 @@ const TrabajadorVer = () => {
             <input
               type="text"
               name="apellidoPaterno"
-              value={formDataTrabajador.apellidoPaterno}
+              value={formDataTrabajador.apellidoPaterno || ""}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-purple-500 outline-none"
             />
@@ -103,7 +81,7 @@ const TrabajadorVer = () => {
             <input
               type="text"
               name="apellidoMaterno"
-              value={formDataTrabajador.apellidoMaterno}
+              value={formDataTrabajador.apellidoMaterno || ""}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-purple-500 outline-none"
             />
@@ -114,7 +92,7 @@ const TrabajadorVer = () => {
             <input
               type="text"
               name="direccion"
-              value={formDataTrabajador.direccion}
+              value={formDataTrabajador.direccion || ""}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-purple-500 outline-none"
             />
@@ -125,7 +103,7 @@ const TrabajadorVer = () => {
             <input
               type="text"
               name="telefono"
-              value={formDataTrabajador.telefono}
+              value={formDataTrabajador.telefono || ""}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-purple-500 outline-none"
             />

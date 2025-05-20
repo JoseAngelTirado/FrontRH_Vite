@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const DOCUMENTO_API = "http://localhost:8080/documentoes"
+const DOCUMENTO_API = "http://localhost:8080/documentos"
 
 class DocumentoService {
     getAlldocumento() {

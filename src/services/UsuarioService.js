@@ -2,11 +2,6 @@ import axios from "axios";
 
 const USUARIO_API="http://localhost:8080/usuarios"
 
-const getUsuarioByEmail = (email) => {
-  return axios.get(`${API_URL}/email/${email}`);//obtenemos el usuario por email
-};
-
-
 class UsuarioService{
 
     getAllUsuarios(){
