@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import RHDashboard from "../../components/RHDashboard";
 import RHActualizarExpedientes from "../../components/RHActualizarExpedientes";
 import RHInformacionEmpresa from "../../components/RHInformacionEmpresa";

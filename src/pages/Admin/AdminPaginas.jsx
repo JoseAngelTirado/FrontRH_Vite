@@ -4,7 +4,7 @@ import AdminListarUsuarios from "../../components/AdminListarUsuarios"
 import AdminDashboard from "../../components/AdminDashboard"
 
 function AdminPagina() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white">

@@ -52,7 +52,7 @@ const AdminListarUsuarios = () => {
                     className="text-blue-600 hover:underline"
                     to={`/admin/actualizar/${usuario.id_usuario}`}
                   >
-                    ✏️ Actualizar
+                    Actualizar
                   </Link>
                   {/* <button onClick={() => borrarUsuario(usuario.id_usuario)} className="text-red-600 hover:underline">🗑️ Eliminar</button> */}
                 </td>
