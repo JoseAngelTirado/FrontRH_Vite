@@ -130,6 +130,99 @@ const TrabajadorVer = () => {
               className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-purple-500 outline-none"
             />
           </div>
+          <div>
+            <label className="block text-gray-700 mb-1">RFC</label>
+            <div className="relative">
+              <input
+                type="file"
+                name="rfc"
+                accept=".pdf"
+                onChange={(e) => {
+                  handleChange(e);
+                  // Actualizar el nombre del archivo mostrado
+                  const fileName = e.target.files[0]?.name || "Seleccionar PDF";
+                  e.target.nextElementSibling.querySelector('span').textContent = fileName;
+                }}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              />
+              <div className="flex items-center justify-between border border-gray-300 rounded-xl px-4 py-2 bg-white">
+                <span className="text-gray-500 truncate">Seleccionar PDF</span>
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Input para NSS (repetir este patrón para los otros campos de archivo) */}
+          <div>
+            <label className="block text-gray-700 mb-1">NSS</label>
+            <div className="relative">
+              <input
+                type="file"
+                name="nss"
+                accept=".pdf"
+                onChange={(e) => {
+                  handleChange(e);
+                  const fileName = e.target.files[0]?.name || "Seleccionar PDF";
+                  e.target.nextElementSibling.querySelector('span').textContent = fileName;
+                }}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              />
+              <div className="flex items-center justify-between border border-gray-300 rounded-xl px-4 py-2 bg-white">
+                <span className="text-gray-500 truncate">Seleccionar PDF</span>
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-gray-700 mb-1">Curp</label>
+            <div className="relative">
+              <input
+                type="file"
+                name="curp"
+                accept=".pdf"
+                onChange={(e) => {
+                  handleChange(e);
+                  const fileName = e.target.files[0]?.name || "Seleccionar PDF";
+                  e.target.nextElementSibling.querySelector('span').textContent = fileName;
+                }}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              />
+              <div className="flex items-center justify-between border border-gray-300 rounded-xl px-4 py-2 bg-white">
+                <span className="text-gray-500 truncate">Seleccionar PDF</span>
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-gray-700 mb-1">Acta de nacimiento</label>
+            <div className="relative">
+              <input
+                type="file"
+                name="acta"
+                accept=".pdf"
+                onChange={(e) => {
+                  handleChange(e);
+                  const fileName = e.target.files[0]?.name || "Seleccionar PDF";
+                  e.target.nextElementSibling.querySelector('span').textContent = fileName;
+                }}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              />
+              <div className="flex items-center justify-between border border-gray-300 rounded-xl px-4 py-2 bg-white">
+                <span className="text-gray-500 truncate">Seleccionar PDF</span>
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
 
           <button
             type="submit"

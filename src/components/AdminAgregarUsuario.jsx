@@ -11,6 +11,7 @@ const AdminAgregarUsuario = () => {
     email: "",
     password: "",
     rol: "trabajador",
+    id_empresa: "",
   });
 
   const handleChange = (e) => {
@@ -22,7 +23,12 @@ const AdminAgregarUsuario = () => {
     e.preventDefault();
 
     for (const campo in usuario) {
-      if (!usuario[campo].trim()) {
+      const valor = usuario[campo];
+
+      if (
+        (typeof valor === "string" && !valor.trim()) ||
+        (typeof valor === "number" && (isNaN(valor) || valor <= 0))
+      ) {
         alert(`El campo ${campo} es obligatorio.`);
         return;
       }
@@ -32,8 +38,13 @@ const AdminAgregarUsuario = () => {
       nombre: usuario.nombre,
       email: usuario.email,
       password: usuario.password,
-      rol: usuario.rol,
+      rol: usuario.rol, // Asegura que coincida con el enum
+      empresa: {
+        id_empresa: usuario.id_empresa // Conversión a número
+      }
     };
+    console.log("Nuevo suuari:")
+    console.log(nuevoUsuario)
 
     try {
       if (id_usuario) {
@@ -42,6 +53,7 @@ const AdminAgregarUsuario = () => {
       } else {
         await UsuarioService.createUsuario(nuevoUsuario);
         alert("Usuario agregado");
+
       }
       navigate("/admin/dashboard");
     } catch (error) {
@@ -52,8 +64,10 @@ const AdminAgregarUsuario = () => {
   useEffect(() => {
     if (id_usuario) {
       UsuarioService.getUsuarioById(id_usuario)
+
         .then((response) => {
           setUsuario({
+            id_empresa: response.data.empresa.id_empresa,
             nombre: response.data.nombre,
             email: response.data.email,
             password: response.data.password,
@@ -79,6 +93,20 @@ const AdminAgregarUsuario = () => {
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label className="block text-gray-700 font-medium mb-1">
+              Id de empresa:
+            </label>
+            <input
+              type="text"
+              name="id_empresa"
+              value={usuario.id_empresa}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              placeholder="Digita la empresa"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
               Nombre completo:
             </label>
             <input
@@ -88,7 +116,7 @@ const AdminAgregarUsuario = () => {
               onChange={handleChange}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-              placeholder="Digita tu nombre"
+              placeholder="Digita el nombre"
             />
           </div>
 
