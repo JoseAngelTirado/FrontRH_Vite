@@ -34,7 +34,7 @@ const TrabajadorVer = () => {
     if (id_trabajador) {
       TrabajadorService.updateTrabajador(id_trabajador, trabajador)
         .then(() => {
-          navigate("/trabajadores/actualizar/" + id_trabajador);
+          navigate("/trabajador/dashboard/" + id_trabajador);
         })
         .catch((error) => {
           console.log(error);
@@ -58,7 +58,7 @@ const TrabajadorVer = () => {
           console.log(error);
         });
     }
-  }, [id_trabajador]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
@@ -135,7 +135,7 @@ const TrabajadorVer = () => {
             type="submit"
             className="w-full bg-purple-600 text-white font-semibold py-2 rounded-xl hover:bg-purple-700 transition"
           >
-            Ir a Actualizar Información
+            Guardar
           </button>
         </form>
       </div>

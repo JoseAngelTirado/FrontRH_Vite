@@ -20,27 +20,27 @@ const TrabajadorVer = () => {
     setFormDataTrabajador({ ...formDataTrabajador, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    const trabajador = {
-      nombre: formDataTrabajador.nombre,
-      apellidoPaterno: formDataTrabajador.apellidoPaterno,
-      apellidoMaterno: formDataTrabajador.apellidoMaterno,
-      direccion: formDataTrabajador.direccion,
-      telefono: formDataTrabajador.telefono,
-    };
+  //   const trabajador = {
+  //     nombre: formDataTrabajador.nombre,
+  //     apellidoPaterno: formDataTrabajador.apellidoPaterno,
+  //     apellidoMaterno: formDataTrabajador.apellidoMaterno,
+  //     direccion: formDataTrabajador.direccion,
+  //     telefono: formDataTrabajador.telefono,
+  //   };
 
-    if (id_trabajador) {
-      TrabajadorService.updateTrabajador(id_trabajador, trabajador)
-        .then(() => {
-          navigate("/trabajadores/actualizar/" + id_trabajador);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  };
+  //   if (id_trabajador) {
+  //     TrabajadorService.updateTrabajador(id_trabajador, trabajador)
+  //       .then(() => {
+  //         navigate("/trabajador/actualizar/" + id_trabajador);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   }
+  // };
 
   useEffect(() => {
     if (id_trabajador) {
@@ -58,7 +58,7 @@ const TrabajadorVer = () => {
           console.log(error);
         });
     }
-  }, [id_trabajador]);
+  },);
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
@@ -75,7 +75,7 @@ const TrabajadorVer = () => {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form  className="space-y-5">
           <div>
             <label className="block text-gray-700 mb-1">Nombre</label>
             <input
@@ -131,12 +131,12 @@ const TrabajadorVer = () => {
             />
           </div>
 
-          <button
+          {/* <button
             type="submit"
             className="w-full bg-purple-600 text-white font-semibold py-2 rounded-xl hover:bg-purple-700 transition"
           >
             Ir a Actualizar Información
-          </button>
+          </button> */}
         </form>
       </div>
     </div>
