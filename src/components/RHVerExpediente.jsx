@@ -24,19 +24,27 @@ const RHVerExpediente = () => {
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+
         <div className="bg-white p-6 rounded-xl shadow-lg">
           <h3 className="text-xl font-semibold text-gray-700 mb-4">Información Personal</h3>
-          <p className="text-gray-600">Nombre: <span className="font-medium">{expediente.nombreTrabajador}</span></p>
-          <p className="text-gray-600">Fecha de nacimiento: <span className="font-medium">{expediente.fechaNacimiento}</span></p>
-          <p className="text-gray-600">País de origen: <span className="font-medium">{expediente.paisOrigen}</span></p>
+          <p className="text-gray-600">Nombre: <span className="font-medium">{expediente.trabajador?.nombre}</span></p>
+          <p className="text-gray-600">RFC: <span className="font-medium">{expediente.rfc_trabajador}</span></p>
+          <p className="text-gray-600">NSS: <span className="font-medium">{expediente.nss}</span></p>
         </div>
 
         <div className="bg-white p-6 rounded-xl shadow-lg">
           <h3 className="text-xl font-semibold text-gray-700 mb-4">Información Laboral</h3>
-          <p className="text-gray-600">Puesto: <span className="font-medium">{expediente.puesto}</span></p>
-          <p className="text-gray-600">Fecha de ingreso: <span className="font-medium">{expediente.fechaIngreso}</span></p>
-          <p className="text-gray-600">Salario: <span className="font-medium">${expediente.salario}</span></p>
+          <p className="text-gray-600">Fecha de registro: <span className="font-medium">{expediente.fechaRegistro}</span></p>
+          <p className="text-gray-600">Antigüedad: <span className="font-medium">{expediente.antiguedad} años</span></p>
+          <p className="text-gray-600">Sueldo: <span className="font-medium">${expediente.sueldo}</span></p>
         </div>
+
+        <div className="bg-white p-6 rounded-xl shadow-lg">
+          <h3 className="text-xl font-semibold text-gray-700 mb-4">Información de Empresa</h3>
+          <p className="text-gray-600">Empresa: <span className="font-medium">{expediente.empresa?.nombre}</span></p>
+          <p className="text-gray-600">RFC Empresa: <span className="font-medium">{expediente.rfc_empresa}</span></p>
+        </div>
+
       </div>
 
       <div className="flex flex-wrap gap-4">
@@ -50,7 +58,7 @@ const RHVerExpediente = () => {
           onClick={() => navigate("/rh/expedientes/listar")}
           className="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition duration-200"
         >
-          Cancelar
+          Volver a Lista
         </button>
       </div>
     </div>
