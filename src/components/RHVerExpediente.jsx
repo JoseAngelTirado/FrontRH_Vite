@@ -1,20 +1,60 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import ExpedienteService from "../services/ExpedienteService"
 
+const RHVerExpediente = () => {
+  const { id_expediente } = useParams()
+  const navigate = useNavigate()
+  const [expediente, setExpediente] = useState(null)
 
-const RHVerExpediente = ()=>{
-    const {id_expediente} = useParams();
-    return(
-        <div>
-            <h2>Expediente numero: {id_expediente} Del trabajador: </h2>
+  useEffect(() => {
+    ExpedienteService.getExpedienteById(id_expediente)
+      .then(response => setExpediente(response.data))
+      .catch(error => console.log(error))
+  }, [id_expediente])
 
-            <div>
+  if (!expediente) {
+    return <div className="p-8">Cargando expediente...</div>
+  }
 
-            </div>
+  return (
+    <div className="p-8 bg-gray-50 min-h-screen">
+      <h2 className="text-3xl font-bold text-gray-800 mb-8">
+        Expediente número: {expediente.id_expediente}
+      </h2>
 
-            <div></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="bg-white p-6 rounded-xl shadow-lg">
+          <h3 className="text-xl font-semibold text-gray-700 mb-4">Información Personal</h3>
+          <p className="text-gray-600">Nombre: <span className="font-medium">{expediente.nombreTrabajador}</span></p>
+          <p className="text-gray-600">Fecha de nacimiento: <span className="font-medium">{expediente.fechaNacimiento}</span></p>
+          <p className="text-gray-600">País de origen: <span className="font-medium">{expediente.paisOrigen}</span></p>
         </div>
 
-    )
+        <div className="bg-white p-6 rounded-xl shadow-lg">
+          <h3 className="text-xl font-semibold text-gray-700 mb-4">Información Laboral</h3>
+          <p className="text-gray-600">Puesto: <span className="font-medium">{expediente.puesto}</span></p>
+          <p className="text-gray-600">Fecha de ingreso: <span className="font-medium">{expediente.fechaIngreso}</span></p>
+          <p className="text-gray-600">Salario: <span className="font-medium">${expediente.salario}</span></p>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-4">
+        <button
+          onClick={() => navigate(`/rh/expedientes/actualizar/${id_expediente}`)}
+          className="bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition duration-200"
+        >
+          Actualizar Información Laboral
+        </button>
+        <button
+          onClick={() => navigate("/rh/expedientes/listar")}
+          className="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition duration-200"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  )
 }
 
-export default RHVerExpediente;
+export default RHVerExpediente
