@@ -26,7 +26,7 @@ const AdminListarUsuarios = () => {
         to='/admin/agregar'
         className="inline-block mb-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-200"
       >
-        ➕ Agregar Usuario
+         Agregar Usuario
       </Link> */}
 
       <div className="overflow-x-auto rounded-xl shadow-lg">
@@ -52,7 +52,7 @@ const AdminListarUsuarios = () => {
                     className="text-blue-600 hover:underline"
                     to={`/admin/actualizar/${usuario.id_usuario}`}
                   >
-                    Actualizar
+                     Actualizar
                   </Link>
                   {/* <button onClick={() => borrarUsuario(usuario.id_usuario)} className="text-red-600 hover:underline">🗑️ Eliminar</button> */}
                 </td>
