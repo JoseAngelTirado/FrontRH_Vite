@@ -5,8 +5,12 @@ import RHInformacionEmpresa from "../../components/RHInformacionEmpresa";
 import RHListarExpedientes from "../../components/RHListarExpedientes";
 import RHVerEmpresa from "../../components/RHVerEmpresa";
 import RHVerExpediente from "../../components/RHVerExpediente";
+import { useUser } from "../../context/UserContext";
 
 function RHPagina() {
+  const { user } = useUser();
+  
+  console.log(user)
   return (
     <div className="flex items-center justify-center min-h-screen bg-white">
       <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-5xl">
@@ -20,7 +24,7 @@ function RHPagina() {
             <Route path="/expedientes/listar" element={<RHListarExpedientes />} />
             <Route path="/expedientes/actualizar/:id_expediente" element={<RHActualizarExpedientes />} />
             <Route path="/expedientes/ver/:id_expediente" element={<RHVerExpediente />} />
-            <Route path="/empresa/informacion" element={<RHInformacionEmpresa />} />
+            <Route path="/empresa/informacion/:id_empresa" element={<RHInformacionEmpresa />} />
             <Route path="/empresa/ver/:id_empresa" element={<RHVerEmpresa />} />
           </Routes>
         </div>

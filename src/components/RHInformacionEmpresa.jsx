@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import EmpresaService from "../services/EmpresaService";
-import { ArrowLeftCircle } from "lucide-react";
+import { ArrowLeftCircle, User } from "lucide-react";
+import { UserContext } from "../context/UserContext";
 
 const RHInformacionEmpresa = () => {
+  
   const navigate = useNavigate();
   const { id_empresa } = useParams();
 
@@ -16,17 +18,20 @@ const RHInformacionEmpresa = () => {
     telefono: "",
   });
 
+  console.log(id_empresa)
   useEffect(() => {
+    console.log(id_empresa)
     if (id_empresa) {
       EmpresaService.getEmpresaById(id_empresa)
         .then((response) => {
+          console.log(response.data)
           setEmpresa(response.data);
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [id_empresa]);
+  },);
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
@@ -90,7 +95,7 @@ const RHInformacionEmpresa = () => {
         {/* Botón para ir a editar */}
         <div className="flex justify-end mt-8">
           <button
-            onClick={() => navigate(`/empresa/ver/${id_empresa}`)}
+            onClick={() => navigate(`/rh/empresa/ver/${id_empresa}`)}
             className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition duration-200"
           >
             Actualizar Información

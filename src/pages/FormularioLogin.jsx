@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Mail, Lock } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext'; // Importamos el hook del contexto
 import UsuarioService from '../services/UsuarioService';
 
 const FormularioLogin = () => {
@@ -14,7 +14,8 @@ const FormularioLogin = () => {
     password: '',
   });
 
-  const navigate = useNavigate();
+  // Usamos el contexto en lugar de useNavigate
+  const { login } = useUser();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,40 +43,18 @@ const FormularioLogin = () => {
 
     if (hasError) return;
 
-    // Consulta y validación de credenciales
     try {
-      // const response = await UsuarioService.getUsuarioByEmail(formDataCredenciales.email);
       const response = await UsuarioService.getUsuarioById(formDataCredenciales.id_usuario);
-
-
       const usuario = response.data;
 
       if (usuario.password === formDataCredenciales.password) {
-        // Guardar en localStorage para sesiones simples
-        localStorage.setItem("id_usuario", usuario.id_usuario);
-
-        // Redireccionar según el rol
-        switch (usuario.rol) {
-          case 'admin':
-            navigate('/admin/dashboard');
-            break;
-          case 'director':
-            navigate('/director/dashboard');
-            break;
-          case 'rh':
-            navigate('/rh/dashboard');
-            break;
-          case 'trabajador':
-            navigate('/trabajador/dashboard/' + usuario.id_usuario);
-            break;
-          default:
-            alert('Rol desconocido');
-            break;
-        }
+        // En lugar de localStorage y navigate, usamos la función login del contexto
+        login(usuario.id_usuario, usuario.rol, usuario.nombre,usuario.empresa.id_empresa); // Esto actualiza el estado global y redirige automáticamente
       } else {
         alert('Contraseña incorrecta');
       }
     } catch (error) {
+      console.log(error)
       alert('Usuario no encontrado');
     }
   };

@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
 function RHDashboard() {
+  const {user} = useUser();
   const navigate = useNavigate();
 
   return (
@@ -16,7 +18,7 @@ function RHDashboard() {
         </button>
 
         <button
-          onClick={() => navigate("/rh/empresa/informacion")}
+          onClick={() => navigate(`/rh/empresa/informacion/${user.id_empresa}`)}
           className="w-full bg-pink-500 text-white px-4 py-3 rounded-xl hover:bg-pink-600 transition duration-200"
         >
           Empresas

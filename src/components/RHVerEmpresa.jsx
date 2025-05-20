@@ -36,7 +36,7 @@ const RHVerEmpresa = () => {
     if (id_empresa) {
       EmpresaService.updateEmpresa(id_empresa, empresa)
         .then(() => {
-          navigate("/empresa/informacion/" + id_empresa);
+          navigate("/rh/empresa/informacion/" + id_empresa);
         })
         .catch((error) => {
           console.log(error);

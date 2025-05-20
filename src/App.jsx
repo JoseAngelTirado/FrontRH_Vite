@@ -5,54 +5,60 @@ import DirectorPaginas from "./pages/Director/DirectorPaginas";
 import TrabajadorPaginas from "./pages/Trabajador/TrabajadorPaginas";
 import FormularioLogin from "./pages/FormularioLogin";
 import Header from "./components/Header";
+import ProtectedRoute from "./utils/ProtectedRouted";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
 
   return (
-
     <div>
       <BrowserRouter>
+        <UserProvider>
+          <Routes>
+            <Route exact path="/" element={<FormularioLogin />} />
+            <Route element={<ProtectedRoute allowedRoles={["admin"]}/>}>
+              <Route path="admin/*" element=
+                {
+                  <>
+                    <Header />
+                    <AdminPaginas />
+                  </>
+                }
+              />
 
-        <Routes>
-          
-          <Route exact path="/" element={<FormularioLogin />} />
-
-          <Route path="/admin/*" element=
-            {
-              <>
-                <Header />
-                <AdminPaginas />
-              </>
-            }
-          />
-          <Route path="/trabajador/*" element=
-            {
-              <>
-                <Header />
-                <TrabajadorPaginas />
-              </>
-            }
-          />
-
-
-          <Route path="/rh/*" element=
-            {
-              <>
-                <Header />
-                <RHPaginas />
-              </>
-            }
-          />
-          <Route path="/director/*" element=
-            {
-              <>
-                <Header />
-                <DirectorPaginas />
-              </>
-            }
-          />
-        </Routes>
-
+            </Route>
+            <Route element={<ProtectedRoute allowedRoles={["trabajador"]}/>}>
+              <Route path="/trabajador/*" element=
+                {
+                  <>
+                    <Header />
+                    <TrabajadorPaginas />
+                  </>
+                }
+              />
+            </Route>
+            <Route element={<ProtectedRoute allowedRoles={["rh"]}/>}>
+              <Route path="/rh/*" element=
+                {
+                  <>
+                    <Header />
+                    <RHPaginas />
+                  </>
+                }
+              />
+            </Route>
+            <Route element={<ProtectedRoute allowedRoles={["director"]}/>}>
+              <Route path="/director/*" element=
+                {
+                  <>
+                    <Header />
+                    <DirectorPaginas />
+                  </>
+                }
+              />
+            </Route>
+          </Routes>
+        </UserProvider>
       </BrowserRouter>
     </div>
   );
