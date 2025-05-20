@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
     const login = (id, rol,nombre, id_empresa) => {
         setUser({ id, rol,nombre, id_empresa });
         if (rol == "trabajador") {
-            navigate("/" + rol + id);
+            navigate("/" + rol + "/dashboard/"+ id);
         } else {
             console.log(id, rol)
             navigate("/" +rol + "/dashboard");
