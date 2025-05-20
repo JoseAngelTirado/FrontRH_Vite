@@ -1,14 +1,12 @@
-import { Routes, Route, useNavigate } from "react-router-dom"
-import RHDashboard from "../../components/RHDashboard"
-import RHActualizarExpedientes from "../../components/RHActualizarExpedientes"
-import RHInformacionEmpresa from "../../components/RHInformacionEmpresa"
-import RHListarExpedientes from "../../components/RHListarExpedientes"
-import RHVerEmpresa from "../../components/RHVerEmpresa"
-import RHVerExpediente from "../../components/RHVerExpediente"
+import { Routes, Route } from "react-router-dom";
+import RHDashboard from "../../components/RHDashboard";
+import RHActualizarExpedientes from "../../components/RHActualizarExpedientes";
+import RHInformacionEmpresa from "../../components/RHInformacionEmpresa";
+import RHListarExpedientes from "../../components/RHListarExpedientes";
+import RHVerEmpresa from "../../components/RHVerEmpresa";
+import RHVerExpediente from "../../components/RHVerExpediente";
 
 function RHPagina() {
-  const navigate = useNavigate();
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-white">
       <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-5xl">
@@ -32,4 +30,3 @@ function RHPagina() {
 }
 
 export default RHPagina;
-

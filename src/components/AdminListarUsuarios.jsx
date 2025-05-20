@@ -1,77 +1,63 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
-import UsuarioService from '../services/UsuarioService';
+import { Link } from 'react-router-dom'
 
-const AdminListarUsuarios = () => {
-  const [usuarios, setUsuarios] = useState([]);
+import ExpedienteService from '../services/ExpedienteService'
+
+const RHListarExpedientes = () => {
+
+  const [expedientes, setExpedientes] = useState([])
 
   useEffect(() => {
-    listarUsuarios();
+    listarExpedientes()
   }, [])
 
-  const listarUsuarios = () => {
-    UsuarioService.getAllUsuarios().then(response => {
-      setUsuarios(response.data);
-      console.log(response.data);
+  const listarExpedientes = () => {
+    ExpedienteService.getAllExpedientes().then(response => {
+      setExpedientes(response.data)
     }).catch(error => {
-      console.log(error);
+      console.log(error)
     })
   }
 
   return (
-    <div className="p-8">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Lista de Usuarios</h2>
+    <div className='p-8 bg-gray-50 min-h-screen'>
+      <h2 className='text-2xl font-bold text-gray-800 mb-6'>Lista de Expedientes</h2>
 
-      {/* <Link 
-        to='/admin/agregar'
-        className="inline-block mb-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-200"
-      >
-        ➕ Agregar Usuario
-      </Link> */}
-
-      <div className="overflow-x-auto rounded-xl shadow-lg">
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr className="bg-purple-600 text-white">
-              <th className="px-6 py-3 text-left">ID</th>
-              <th className="px-6 py-3 text-left">Nombre</th>
-              <th className="px-6 py-3 text-left">Correo</th>
-              <th className="px-6 py-3 text-left">Rol</th>
-              <th className="px-6 py-3 text-left">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {usuarios.map(usuario => (
-              <tr key={usuario.id_usuario} className="border-b hover:bg-gray-100">
-                <td className="px-6 py-4 text-gray-800">{usuario.id_usuario}</td>
-                <td className="px-6 py-4 text-gray-800">{usuario.nombre}</td>
-                <td className="px-6 py-4 text-gray-800">{usuario.email}</td>
-                <td className="px-6 py-4 text-gray-800 capitalize">{usuario.rol}</td>
-                <td className="px-6 py-4 space-x-2">
+      <table className='w-full bg-white shadow-md rounded-lg overflow-hidden'>
+        <thead className='bg-pink-300 text-gray-800'>
+          <tr>
+            <th className='px-6 py-3 text-left'>Número de Expediente</th>
+            <th className='px-6 py-3 text-left'>Nombre del Trabajador</th>
+            <th className='px-6 py-3 text-left'>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            expedientes.map(expediente => (
+              <tr key={expediente.id_expediente} className='border-b hover:bg-gray-100'>
+                <td className='px-6 py-4'>{expediente.id_expediente}</td>
+                <td className='px-6 py-4'>{expediente.nombre_trabajador}</td>
+                <td className='px-6 py-4 flex space-x-2'>
                   <Link
-                    className="text-blue-600 hover:underline"
-                    to={`/admin/actualizar/${usuario.id_usuario}`}
+                    to={`/rh/expedientes/ver/${expediente.id_expediente}`}
+                    className='bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition duration-200'
                   >
-                    ✏️ Actualizar
+                    Ver Expediente
                   </Link>
-                  {/* <button onClick={() => borrarUsuario(usuario.id_usuario)} className="text-red-600 hover:underline">🗑️ Eliminar</button> */}
+                  <button
+                    onClick={() => console.log("Generar PDF de", expediente.id_expediente)}
+                    className='bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition duration-200'
+                  >
+                    Generar PDF
+                  </button>
                 </td>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="flex justify-end mb-4">
-        <Link
-          to="/admin/dashboard"
-          className="bg-purple-600 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-700 transition-colors"
-        >
-          Regresar
-        </Link>
-      </div>
+            ))
+          }
+        </tbody>
+      </table>
     </div>
   )
 }
 
-export default AdminListarUsuarios;
+export default RHListarExpedientes

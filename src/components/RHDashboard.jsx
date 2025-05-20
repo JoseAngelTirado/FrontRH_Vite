@@ -10,37 +10,16 @@ function RHDashboard() {
       <div className="space-y-4 w-full max-w-md">
         <button
           onClick={() => navigate("/rh/expedientes/listar")}
-          className="w-full bg-pink-200 text-gray-800 px-4 py-3 rounded-xl hover:bg-pink-200 transition duration-200"
+          className="w-full bg-pink-500 text-white px-4 py-3 rounded-xl hover:bg-pink-600 transition duration-200"
         >
-              Listar Expedientes
-        </button>
-
-        <button
-          onClick={() => navigate("/rh/expedientes/actualizar/1")} // puedes cambiar el ID dinámicamente luego
-          className="w-full bg-pink-200 text-gray-800 px-4 py-3 rounded-xl hover:bg-pink-200 transition duration-200"
-        >
-          Actualizar Expediente
-        </button>
-
-        <button
-          onClick={() => navigate("/rh/expedientes/ver/1")} // ejemplo, puedes cambiar el ID dinámicamente
-          className="w-full bg-pink-200 text-gray-800 px-4 py-3 rounded-xl hover:bg-pink-200 transition duration-200"
-        >
-          Ver Expediente
+          Expedientes
         </button>
 
         <button
           onClick={() => navigate("/rh/empresa/informacion")}
-          className="w-full bg-pink-200 text-gray-800 px-4 py-3 rounded-xl hover:bg-pink-200 transition duration-200"
+          className="w-full bg-pink-500 text-white px-4 py-3 rounded-xl hover:bg-pink-600 transition duration-200"
         >
-          Información de la Empresa
-        </button>
-
-        <button
-          onClick={() => navigate("/rh/empresa/ver/1")} // ejemplo de ID
-          className="w-full bg-pink-200 text-gray-800 px-4 py-3 rounded-xl hover:bg-pink-200 transition duration-200"
-        >
-          Ver Empresa
+          Empresas
         </button>
       </div>
     </div>
@@ -48,3 +27,4 @@ function RHDashboard() {
 }
 
 export default RHDashboard;
+
