@@ -14,13 +14,14 @@ const RHListarExpedientes = () => {
     const listarExpedientes = () => {
         ExpedienteService.getAllExpedientes().then(response => {
             setExpedientes(response.data);
+            console.log(expedientes)
         }).catch(error => {
             console.log(error);
         })
     }
 
     return (
-        <div className=''>
+        <div className='text-black' >
             <h2>Lista de expedientes</h2>
             <table className=''>
                 <thead>
@@ -34,10 +35,11 @@ const RHListarExpedientes = () => {
                     {
                         expedientes.map(
                             expedientes =>
-                                <tr key={expedientes.id_expediente}>
-                                    <td>{expedientes.nombre}</td>
+                                <tr key={expedientes.id_expediente} className='border-b hover:bg-gray-100 text-black'>
+                                    <td className='px-6 py-4'>{expedientes.id_expediente}</td>
+                                    <td className='px-6 py-4'>{expedientes.trabajador.nombre}</td>
                                     <td>
-                                        <Link className='' to={`/expedientes/${expedientes.id_expediente}`}>Ver Expediente</Link>
+                                        <Link className='' to={`/expedientes/ver/${expedientes.id_expediente}`}>Ver Expediente</Link>
                                         <button onClick={() => borrarExpediente(expedientes.id_trabajador)}>Eliminar</button>
                                     </td>
                                 </tr>
