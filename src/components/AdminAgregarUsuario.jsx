@@ -39,9 +39,9 @@ const AdminAgregarUsuario = () => {
       nombre: usuario.nombre,
       email: usuario.email,
       password: usuario.password,
-      rol: usuario.rol, // Asegura que coincida con el enum
+      rol: usuario.rol,
       empresa: {
-        id_empresa: usuario.id_empresa // Conversión a número
+        id_empresa: usuario.id_empresa
       }
     };
 

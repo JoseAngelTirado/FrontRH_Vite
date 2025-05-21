@@ -31,10 +31,10 @@ const RHInformacionEmpresa = () => {
           console.log(error);
         });
     }
-  },);
+  },[]);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 text-black">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-xl">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-3xl font-bold text-purple-600">
@@ -91,8 +91,6 @@ const RHInformacionEmpresa = () => {
             </p>
           </div>
         </div>
-
-        {/* Botón para ir a editar */}
         <div className="flex justify-end mt-8">
           <button
             onClick={() => navigate(`/rh/empresa/ver/${id_empresa}`)}

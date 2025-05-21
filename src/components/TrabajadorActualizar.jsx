@@ -13,23 +13,41 @@ const TrabajadorVer = () => {
     apellidoMaterno: "",
     direccion: "",
     telefono: "",
+    rfc: null,
+    nss: null,
+    curp: null,
+    acta: null,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormDataTrabajador({ ...formDataTrabajador, [name]: value });
+    const { name, type, value, files } = e.target;
+    if (type === "file") {
+      setFormDataTrabajador(prev => ({
+        ...prev,
+        [name]: files[0] || null,
+      }));
+    } else {
+      setFormDataTrabajador(prev => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+
     const trabajador = {
-      nombre: formDataTrabajador.nombre ,
+      nombre: formDataTrabajador.nombre,
       apellidoPaterno: formDataTrabajador.apellidoPaterno,
       apellidoMaterno: formDataTrabajador.apellidoMaterno,
       direccion: formDataTrabajador.direccion,
       telefono: formDataTrabajador.telefono,
     };
+
+    console.log(trabajador)
+
 
     if (id_trabajador) {
       TrabajadorService.updateTrabajador(id_trabajador, trabajador)
@@ -46,19 +64,27 @@ const TrabajadorVer = () => {
     if (id_trabajador) {
       TrabajadorService.getTrabajadorById(id_trabajador)
         .then((response) => {
+          const data = response.data || {};
+          const usuario = data.usuario || {};
+
           setFormDataTrabajador({
-            nombre: response.data.nombre || "",
-            apellidoPaterno: response.data.apellidoPaterno || "",
-            apellidoMaterno: response.data.apellidoMaterno || "",
-            direccion: response.data.direccion || "",
-            telefono: response.data.telefono || "",
+            nombre: data.nombre || "",
+            apellidoPaterno: data.apellidoPaterno || "",
+            apellidoMaterno: data.apellidoMaterno || "",
+            direccion: data.direccion || "",
+            telefono: data.telefono || "",
+            rfc: data.rfc || null,
+            nss: data.nss || null,
+            curp: data.curp || null,
+            acta: data.acta || null
           });
+
         })
         .catch((error) => {
-          console.log(error);
+          console.log("Error en getTrabajadorById:", error);
         });
     }
-  }, []);
+  }, [id_trabajador]);
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
@@ -139,7 +165,6 @@ const TrabajadorVer = () => {
                 accept=".pdf"
                 onChange={(e) => {
                   handleChange(e);
-                  // Actualizar el nombre del archivo mostrado
                   const fileName = e.target.files[0]?.name || "Seleccionar PDF";
                   e.target.nextElementSibling.querySelector('span').textContent = fileName;
                 }}
@@ -153,8 +178,6 @@ const TrabajadorVer = () => {
               </div>
             </div>
           </div>
-
-          {/* Input para NSS (repetir este patrón para los otros campos de archivo) */}
           <div>
             <label className="block text-gray-700 mb-1">NSS</label>
             <div className="relative">

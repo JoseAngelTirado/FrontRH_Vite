@@ -16,28 +16,22 @@ export const UserProvider = ({ children }) => {
 
             TrabajadorService.getAllTrabajadores().then(response => {
                 const trabajadores = response.data;
-                console.log(trabajadores) 
 
                 const trabajadorEncontrado = trabajadores.find(t =>
                     t?.usuario?.id_usuario === id
                 );
-
                 console.log(trabajadorEncontrado)
                 if (trabajadorEncontrado) {
                     console.log("Trabajador encontrado. ID Trabajador:", trabajadorEncontrado.id_trabajador);
 
                     navigate("/" + rol + "/dashboard/" + trabajadorEncontrado.id_trabajador);
                 }
-
-
             })
         } else {
 
             navigate("/" + rol + "/dashboard");
         }
-
     }
-
     const logout = () => {
         setUser(null);
         navigate("/");

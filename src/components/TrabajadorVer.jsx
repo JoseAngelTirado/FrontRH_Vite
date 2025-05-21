@@ -36,7 +36,7 @@ const TrabajadorVer = () => {
           console.log(error);
         });
     }
-  },);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
@@ -53,7 +53,7 @@ const TrabajadorVer = () => {
           </button>
         </div>
 
-        <form  className="space-y-5">
+        <form className="space-y-5">
           <div>
             <label className="block text-gray-700 mb-1">Nombre</label>
             <input
@@ -109,12 +109,6 @@ const TrabajadorVer = () => {
             />
           </div>
 
-          {/* <button
-            type="submit"
-            className="w-full bg-purple-600 text-white font-semibold py-2 rounded-xl hover:bg-purple-700 transition"
-          >
-            Ir a Actualizar Información
-          </button> */}
         </form>
       </div>
     </div>

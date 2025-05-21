@@ -20,7 +20,6 @@ const RHListarExpedientes = () => {
   }
 
   const borrarExpediente = (id) => {
-    // lógica de eliminación aquí (puedes conectar con tu servicio)
     console.log("Eliminar expediente", id)
   }
 

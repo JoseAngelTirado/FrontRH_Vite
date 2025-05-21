@@ -6,8 +6,7 @@ class ArchivoService {
     subirArchivo(archivo, prefijo) {
         const formData = new FormData();
         formData.append("archivo", archivo);
-        formData.append("prefijo", prefijo); // ejemplo: "rfc", "acta", etc.
-
+        formData.append("prefijo", prefijo);
         return axios.post(`${DOCUMENTO_API}/subir`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data"

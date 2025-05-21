@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Mail, Lock } from 'lucide-react';
-import { useUser } from '../context/UserContext'; // Importamos el hook del contexto
+import { useUser } from '../context/UserContext';
 import UsuarioService from '../services/UsuarioService';
 
 const FormularioLogin = () => {
@@ -14,7 +14,6 @@ const FormularioLogin = () => {
     password: '',
   });
 
-  // Usamos el contexto en lugar de useNavigate
   const { login } = useUser();
 
   const handleChange = (e) => {
@@ -25,7 +24,6 @@ const FormularioLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Validación básica
     let hasError = false;
     let newErrors = { id_usuario: '', password: '' };
 
@@ -48,8 +46,7 @@ const FormularioLogin = () => {
       const usuario = response.data;
 
       if (usuario.password === formDataCredenciales.password) {
-        // En lugar de localStorage y navigate, usamos la función login del contexto
-        login(usuario.id_usuario, usuario.rol, usuario.nombre,usuario.empresa.id_empresa); // Esto actualiza el estado global y redirige automáticamente
+        login(usuario.id_usuario, usuario.rol, usuario.nombre,usuario.empresa.id_empresa);
       } else {
         alert('Contraseña incorrecta');
       }

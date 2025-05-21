@@ -12,5 +12,4 @@ function TrabajadorPaginas() {
     </Routes>
   );
 }
-
 export default TrabajadorPaginas;
